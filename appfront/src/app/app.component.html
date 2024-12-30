@@ -1,0 +1,38 @@
+<div class="table-container">
+  <h1>Rivière de Données en Temps Réel</h1>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element" @rowAnimation>{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="sensorType">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let element" @rowAnimation>{{ element.sensorType }}</td>
+    </ng-container>
+
+    <!-- Value Column -->
+    <ng-container matColumnDef="sensorValue">
+      <th mat-header-cell *matHeaderCellDef>Valeur</th>
+      <td mat-cell *matCellDef="let element" @rowAnimation>{{ element.sensorValue }}</td>
+    </ng-container>
+
+    <!-- Unit Column -->
+    <ng-container matColumnDef="unit">
+      <th mat-header-cell *matHeaderCellDef>Unité</th>
+      <td mat-cell *matCellDef="let element" @rowAnimation>{{ element.unit }}</td>
+    </ng-container>
+
+    <!-- Timestamp Column -->
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef>Horodatage</th>
+      <td mat-cell *matCellDef="let element" @rowAnimation>{{ element.timestamp }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" @rowAnimation></tr>
+  </table>
+</div>
