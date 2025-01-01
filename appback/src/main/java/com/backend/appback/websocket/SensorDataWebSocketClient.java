@@ -2,6 +2,7 @@ package com.backend.appback.websocket;
 
 import com.backend.appback.models.SensorData;
 import com.backend.appback.service.SensorDataService;
+import com.backend.appback.service.ThresholdService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -20,9 +21,16 @@ public class SensorDataWebSocketClient {
 
     private final SensorDataService sensorDataService;
     private final ObjectMapper objectMapper;
+    private final ThresholdService thresholdService;
+    private final AlertWebSocketHandler alertWebSocketHandler;
 
-    public SensorDataWebSocketClient(SensorDataService sensorDataService) {
+    public SensorDataWebSocketClient(
+            SensorDataService sensorDataService,
+            ThresholdService thresholdService,
+            AlertWebSocketHandler alertWebSocketHandler) {
         this.sensorDataService = sensorDataService;
+        this.thresholdService = thresholdService;
+        this.alertWebSocketHandler = alertWebSocketHandler;
         this.objectMapper = new ObjectMapper();
     }
 
@@ -34,15 +42,20 @@ public class SensorDataWebSocketClient {
             WebSocketHandler handler = new TextWebSocketHandler() {
                 @Override
                 protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-                    // Convert JSON to List<SensorData>
                     List<SensorData> sensorDataList = objectMapper.readValue(
                             message.getPayload(),
                             new TypeReference<List<SensorData>>() {}
                     );
 
-                    // Save each sensor data to the database
-                    sensorDataList.forEach(sensorDataService::saveSensorData);
-                    System.out.println("Received and saved sensor data: " + sensorDataList);
+                    for (SensorData data : sensorDataList) {
+                        sensorDataService.saveSensorData(data);
+
+                        // Vérifie si les données dépassent les seuils
+                        if (thresholdService.isValueOutOfBounds(data.getSensorType(), data.getSensorValue())) {
+                            alertWebSocketHandler.sendAlert(data);
+                        }
+                    }
+                    System.out.println("Received and processed sensor data: " + sensorDataList);
                 }
             };
 

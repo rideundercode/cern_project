@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatTableModule,
     MatToolbarModule,
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent],

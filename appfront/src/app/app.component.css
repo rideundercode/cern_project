@@ -30,3 +30,109 @@
     background: #f1f1f1;
   }
   
+
+  .alert-section {
+    margin: 20px;
+    padding: 20px;
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+  }
+  
+  .threshold-section {
+    margin: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background: #343a40;
+    color: #fff;
+  }
+  
+  td {
+    border: 1px solid #dee2e6;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+
+  .threshold-section {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  td {
+    border: 1px solid #dee2e6;
+  }
+  
+  input {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .download-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .download-button:hover {
+    background-color: #45a049;
+  }
+  
